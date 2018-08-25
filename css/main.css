@@ -98,7 +98,7 @@ body {
  * ------------------------------------------------------------------- */
 
 a {
-    color: #862121;
+    color: #ffc107;
     -webkit-transition: all 0.3s ease-in-out;
     transition: all 0.3s ease-in-out;
 }
@@ -120,7 +120,7 @@ a:focus {
 
 h1, h2, h3, h4, h5, h6, .h01, .h02, .h03, .h04, .h05, .h06 {
     font-family: "montserrat-medium", sans-serif;
-    color: #0D0A0B;
+    color: #731919;
     font-style: normal;
     font-weight: normal;
     text-rendering: optimizeLegibility;
@@ -200,7 +200,7 @@ p.lead {
     font-size: 2rem;
     line-height: 1.8;
     margin-bottom: 3.6rem;
-    color: #0D0A0B;
+    color: #b35a0c;
 }
 
 @media only screen and (max-width: 800px) {
