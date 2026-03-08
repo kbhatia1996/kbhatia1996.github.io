@@ -1,12 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Syne:wght@400;500;600;700;800&family=DM+Mono:ital,wght@0,300;0,400;1,300&display=swap');
-
 :root {
-  --color-bg: #080c10 // deep navy-black instead of warm black
-    --color-text: #e2e8f0 // cool crisp white
-    --color-text-muted: #94a3b8 // slate blue-grey (very readable)
-    --color-accent: #38bdf8 // sky blue accent
-    --color-border: rgba(226, 232, 240, 0.08) --font-display: 'Playfair Display', serif;
-  --font-sans: 'Syne', sans-serif;
+  --color-bg: #1a1610;            /* warm dark brown‑black */
+  --color-text: #f5f0e8;          /* cream */
+  --color-text-muted: #b8aa95;    /* muted warm tan */
+  --color-accent: #c9a96e;        /* warm amber gold */
+  --color-border: rgba(245,240,232,0.07);
   --font-mono: 'DM Mono', monospace;
 }
 
