@@ -89,3 +89,26 @@
   0%, 100% { opacity: 1; transform: scale(1); }
   50% { opacity: 0.5; transform: scale(0.8); }
 }
+
+// ─── Mobile Responsive ────────────────────────────────────────────────────────
+@media (max-width: 768px) {
+  .navbar {
+    padding: 1.2rem 1.5rem;
+
+    &.scrolled {
+      padding: 1rem 1.5rem;
+    }
+
+    &__links {
+      display: none;
+    }
+
+    &__status {
+      display: none;
+    }
+
+    &__logo-text {
+      font-size: 1.3rem;
+    }
+  }
+}

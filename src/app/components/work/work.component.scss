@@ -105,3 +105,52 @@
   padding: 0.2rem 0.6rem;
   border-radius: 2px;
 }
+
+// ─── Mobile Responsive ────────────────────────────────────────────────────────
+@media (max-width: 768px) {
+  .work {
+    padding: 5rem 1.5rem;
+
+    &__header {
+      flex-direction: column;
+      gap: 0.5rem;
+      margin-bottom: 2.5rem;
+    }
+
+    &__heading {
+      font-size: clamp(1.8rem, 8vw, 2.5rem);
+    }
+  }
+
+  .project {
+    grid-template-columns: 40px 1fr;
+    gap: 1rem;
+    padding: 1.5rem 0;
+
+    &__arrow {
+      display: none;
+    }
+
+    &__title {
+      font-size: 1.1rem;
+    }
+
+    &__desc {
+      font-size: 0.8rem;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .work {
+    padding: 4rem 1.2rem;
+  }
+
+  .project {
+    grid-template-columns: 1fr;
+
+    &__number {
+      display: none;
+    }
+  }
+}

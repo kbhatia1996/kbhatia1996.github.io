@@ -60,8 +60,8 @@ export class HeroComponent implements OnInit, AfterViewInit, OnDestroy {
 
     const heroHeight = hero.offsetHeight;
     const scrolled = window.scrollY;
-    // Progress 0 → 1 over first 60% of hero scroll range for a snappier feel
-    this.scrollProgress = Math.min(Math.max(scrolled / (heroHeight * 0.6), 0), 1);
+    // Progress 0 → 1 over first 50% of hero scroll range
+    this.scrollProgress = Math.min(Math.max(scrolled / (heroHeight * 0.5), 0), 1);
 
     // Colour layer: starts fully greyscale+dark, transitions to full colour
     const grayscale = Math.round((1 - this.scrollProgress) * 100);
