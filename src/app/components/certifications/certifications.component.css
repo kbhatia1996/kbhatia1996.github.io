@@ -1,0 +1,90 @@
+.certifications {
+  padding: 8rem 4rem;
+  border-top: 1px solid var(--color-border);
+
+  &__inner {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  &__header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 4rem;
+  }
+
+  &__heading {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 900;
+    letter-spacing: -0.03em;
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.certification {
+  display: grid;
+  grid-template-columns: 60px 1fr auto;
+  align-items: flex-start;
+  gap: 2rem;
+  padding: 2rem 0;
+  border-bottom: 1px solid var(--color-border);
+  position: relative;
+
+  &__number {
+    span {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--color-text-muted);
+      letter-spacing: 0.1em;
+    }
+  }
+
+  &__title {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+    color: var(--color-text);
+  }
+
+  &__issuer {
+    font-size: 0.875rem;
+    color: var(--color-accent);
+    font-weight: 600;
+    margin-bottom: 0.2rem;
+  }
+
+  &__date {
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+    font-family: var(--font-mono);
+    margin-bottom: 0.4rem;
+  }
+
+  &__description {
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+    max-width: 500px;
+    margin-bottom: 0.4rem;
+  }
+
+  &__credential {
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+    font-family: var(--font-mono);
+    letter-spacing: 0.05em;
+  }
+
+  &__badge {
+    color: var(--color-accent);
+    flex-shrink: 0;
+    margin-top: 0.5rem;
+  }
+}

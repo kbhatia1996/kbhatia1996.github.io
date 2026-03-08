@@ -1,0 +1,85 @@
+<section class="hero" #heroSection>
+  <!-- Scroll progress indicator -->
+  <div class="scroll-progress" [style.width.%]="scrollProgress * 100"></div>
+
+  <div class="hero__inner">
+    <!-- Left: Text content -->
+    <div class="hero__content" [class.visible]="contentVisible">
+      <p class="section-label">Portfolio</p>
+
+      <h1 class="hero__title">
+        <span class="hero__title-line">Karan</span>
+        <span class="hero__title-line italic">Bhatia</span>
+        <span class="hero__title-line">.</span>
+      </h1>
+
+      <p class="hero__subtitle">
+        Senior Software Engineer building scalable backend systems, cloud-native microservices, and GenAI-powered
+        workflows — with a proven ability to pick up any technology and deliver fast.
+      </p>
+
+      <div class="hero__cta">
+        <a href="#work" class="btn-primary">
+          <span>View Work</span>
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+          </svg>
+        </a>
+        <a href="#contact" class="btn-ghost">Let's Talk</a>
+      </div>
+
+      <div class="hero__stats">
+        <div class="stat">
+          <span class="stat__number">6+</span>
+          <span class="stat__label">Years Exp.</span>
+        </div>
+        <div class="stat__divider"></div>
+        <div class="stat">
+          <span class="stat__number">3</span>
+          <span class="stat__label">Companies</span>
+        </div>
+        <div class="stat__divider"></div>
+        <div class="stat">
+          <span class="stat__number">5+</span>
+          <span class="stat__label">Certifications</span>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Right: The silhouette-to-image reveal -->
+    <div class="hero__image-container" #imageContainer>
+      <div class="hero__image-reveal">
+
+        <!--
+          LAYER 1 — Silhouette: same photo, forced to solid black via CSS.
+          Always sits underneath. Edges = photo edges. Perfect match guaranteed.
+        -->
+        <div class="layer layer--silhouette">
+          <img src="assets/images/image-2-bg.png" alt="" aria-hidden="true" />
+        </div>
+
+        <!--
+          LAYER 2 — Full colour photo, revealed from top as user scrolls.
+          clip-path wipes downward; filter desaturates → full colour simultaneously.
+        -->
+        <div class="layer layer--colour" [style.clip-path]="clipPath" [style.filter]="imageFilter">
+          <img src="assets/images/image-2-bg.png" alt="Karan" />
+        </div>
+
+      </div>
+
+      <!-- Decorative elements -->
+      <div class="hero__image-decor">
+        <div class="decor-ring"></div>
+        <div class="decor-dots"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll hint -->
+  <div class="scroll-hint" [class.hidden]="scrollProgress > 0.05">
+    <div class="scroll-hint__line"></div>
+    <span>Scroll</span>
+  </div>
+</section>

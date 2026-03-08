@@ -1,0 +1,28 @@
+<section class="certifications" id="certifications">
+  <div class="certifications__inner">
+    <div class="certifications__header">
+      <p class="section-label">04 — Certifications</p>
+      <h2 class="certifications__heading">Professional Certifications</h2>
+    </div>
+
+    <div class="certifications__list">
+      <article class="certification" *ngFor="let cert of certifications; let i = index">
+        <div class="certification__number">
+          <span>{{ (i + 1).toString().padStart(2, '0') }}</span>
+        </div>
+        <div class="certification__info">
+          <h3 class="certification__title">{{ cert.title }}</h3>
+          <p class="certification__issuer">{{ cert.issuer }}</p>
+          <p class="certification__date">{{ cert.date }}</p>
+          <p class="certification__description" *ngIf="cert.description">{{ cert.description }}</p>
+          <p class="certification__credential" *ngIf="cert.credentialId">Credential ID: {{ cert.credentialId }}</p>
+        </div>
+        <div class="certification__badge">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path d="M12 2L15.09 8.26L22 9L17 14L18.18 21L12 17.77L5.82 21L7 14L2 9L8.91 8.26L12 2Z" fill="currentColor"/>
+          </svg>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>

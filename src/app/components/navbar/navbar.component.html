@@ -1,0 +1,16 @@
+<nav class="navbar" [class.scrolled]="isScrolled">
+  <div class="navbar__logo">
+    <span class="navbar__logo-text">KB<span class="dot">.</span></span>
+  </div>
+
+  <div class="navbar__links">
+    <a href="#about" class="navbar__link" (mouseenter)="onLinkHover(true)" (mouseleave)="onLinkHover(false)">About</a>
+    <a href="#work" class="navbar__link" (mouseenter)="onLinkHover(true)" (mouseleave)="onLinkHover(false)">Work</a>
+    <a href="#contact" class="navbar__link" (mouseenter)="onLinkHover(true)" (mouseleave)="onLinkHover(false)">Contact</a>
+  </div>
+
+  <div class="navbar__status">
+    <span class="status-dot"></span>
+    <span class="status-text">Available for hire</span>
+  </div>
+</nav>

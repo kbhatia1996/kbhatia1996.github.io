@@ -1,0 +1,31 @@
+<section class="work" id="work">
+  <div class="work__inner">
+    <div class="work__header">
+      <p class="section-label">03 — Selected Work</p>
+      <h2 class="work__heading">Things I've Built</h2>
+    </div>
+
+    <div class="work__list">
+      <article class="project" *ngFor="let project of projects; let i = index"
+               (mouseenter)="activeProject = i"
+               (mouseleave)="activeProject = null"
+               [class.active]="activeProject === i">
+        <div class="project__number">
+          <span>{{ (i + 1).toString().padStart(2, '0') }}</span>
+        </div>
+        <div class="project__info">
+          <h3 class="project__title">{{ project.title }}</h3>
+          <p class="project__desc">{{ project.description }}</p>
+          <div class="project__tags">
+            <span class="tag" *ngFor="let tag of project.tags">{{ tag }}</span>
+          </div>
+        </div>
+        <div class="project__arrow">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path d="M4 10H16M16 10L11 5M16 10L11 15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
