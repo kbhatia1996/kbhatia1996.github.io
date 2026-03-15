@@ -19,46 +19,46 @@ interface Certification {
 export class CertificationsComponent {
   certifications: Certification[] = [
     {
+      title: 'Machine Learning Specialisation',
+      issuer: 'Stanford/Coursera',
+      date: 'July-2025',
+      credentialId: '05L8NC6YW5AO',
+      description: 'Comprehensive knowledge of machine learning algorithms and implementation.'
+    },
+     {
+      title: 'SPARCS program - Angular + Java Full stack + Spring',
+      issuer: 'Accenture',
+      date: 'April 2025',
+      credentialId: '41146f84-2df1-434c-86c9-a0ad18f6b10a',
+      description: 'Completed a comprehensive training program covering Angular, Java Full Stack, and Spring Framework.'
+    },
+    {
+      title: 'AWS Partner - GEN AI with AWS',
+      issuer: 'Amazon Web Services',
+      date: 'April 2025',
+      credentialId: '41146f84-2df1-434c-86c9-a0ad18f6b10a',
+      description: 'Completed a comprehensive training program covering GEN AI with AWS offered tools.'
+    },
+    {
       title: 'AWS Certified Solutions Architect',
       issuer: 'Amazon Web Services',
-      date: '2023',
-      credentialId: 'AWS-123456',
+      date: 'March 2024',
+      credentialId: '0fedb6ff2b3540808beacbceaaa0e990',
       description: 'Demonstrated expertise in designing distributed systems on AWS.'
     },
     {
-      title: 'Google Cloud Professional Developer',
-      issuer: 'Google Cloud',
-      date: '2022',
-      credentialId: 'GCP-789012',
-      description: 'Proficient in developing scalable applications on Google Cloud Platform.'
+      title: 'Dele A1 Spanish',
+      issuer: 'DELE',
+      date: 'November 2023',
+      credentialId: '231101356001010026',
+      description: 'Achieved A1 level proficiency in Spanish language, demonstrating basic communication skills.'
     },
     {
-      title: 'Certified Kubernetes Administrator',
-      issuer: 'Cloud Native Computing Foundation',
-      date: '2022',
-      credentialId: 'CKA-345678',
-      description: 'Skilled in deploying and managing Kubernetes clusters.'
-    },
-    {
-      title: 'Angular Developer Certification',
-      issuer: 'Google',
-      date: '2021',
-      credentialId: 'ANG-901234',
-      description: 'Expertise in building dynamic web applications with Angular.'
-    },
-    {
-      title: 'Machine Learning Engineer',
-      issuer: 'Coursera',
-      date: '2021',
-      credentialId: 'ML-567890',
-      description: 'Comprehensive knowledge of machine learning algorithms and implementation.'
-    },
-    {
-      title: 'Full Stack Web Development',
-      issuer: 'Udacity',
-      date: '2020',
-      credentialId: 'FSWD-123456',
-      description: 'Proficiency in both frontend and backend web development technologies.'
+      title: 'Microsoft Certified: Azure AZ-900 Fundamentals and DP-900 Data Fundamentals',
+      issuer: 'Microsoft',
+      date: 'July 2021',
+      credentialId: 'H906-1018 / H922-9809',
+      description: 'Proficient in developing scalable applications on Microsoft Azure Platform.'
     }
   ];
 }

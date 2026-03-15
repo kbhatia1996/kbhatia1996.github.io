@@ -92,6 +92,15 @@
     color: var(--color-text-muted);
     transition: transform 0.3s ease, color 0.3s ease;
     flex-shrink: 0;
+
+    &.clickable {
+      cursor: pointer !important;
+
+      &:hover {
+        color: var(--color-accent);
+        transform: translateX(4px);
+      }
+    }
   }
 }
 

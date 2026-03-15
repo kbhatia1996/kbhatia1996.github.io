@@ -23,6 +23,7 @@ export class WorkComponent {
       title: 'Resume Screening Assistant',
       description: 'An AI-powered tool that automates the initial screening of resumes, extracting key information and ranking candidates based on job requirements.',
       tags: ['Angular', 'RAG', 'Langchain', 'ChromaDB', 'AWS S3'],
+      url: 'https://medium.com/@kbhatia1996/build-your-own-ai-powered-resume-screening-assistant-with-n8n-langchain-and-angular-0944132a35eb'
     },
     {
       title: 'Electricity Consumption Dashboard',
@@ -38,6 +39,13 @@ export class WorkComponent {
       title: 'Customer Feedback Classifier',
       description: 'A machine learning model that categorizes and analyzes customer feedback to identify common themes and sentiment.',
       tags: ['Python', 'Scikit-learn', 'Pandas'],
+      url: 'https://www.linkedin.com/pulse/building-hybrid-customer-feedback-classifier-vs-logistic-karan-bhatia-wrfxc/'
     },
   ];
+
+  openProjectLink(project: Project): void {
+    if (project.url) {
+      window.open(project.url, '_blank');
+    }
+  }
 }
