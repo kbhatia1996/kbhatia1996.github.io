@@ -12,10 +12,7 @@
         </div>
         <div class="certification__info">
           <h3 class="certification__title">{{ cert.title }}</h3>
-          <p class="certification__issuer">{{ cert.issuer }}</p>
-          <p class="certification__date">{{ cert.date }}</p>
-          <p class="certification__description" *ngIf="cert.description">{{ cert.description }}</p>
-          <p class="certification__credential" *ngIf="cert.credentialId">Credential ID: {{ cert.credentialId }}</p>
+          <p class="certification__issuer" *ngIf="cert.issuer">{{ cert.issuer }}</p>
         </div>
         <div class="certification__badge">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none">

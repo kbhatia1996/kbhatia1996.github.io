@@ -21,25 +21,19 @@ export class WorkComponent {
   projects: Project[] = [
     {
       title: 'Resume Screening Assistant',
-      description: 'An AI-powered tool that automates the initial screening of resumes, extracting key information and ranking candidates based on job requirements.',
-      tags: ['Angular', 'RAG', 'Langchain', 'ChromaDB', 'AWS S3'],
+      description: 'A personal project exploring how AI can organize resume details and compare them with role requirements.',
+      tags: ['AI', 'Document Processing', 'Angular'],
       url: 'https://medium.com/@kbhatia1996/build-your-own-ai-powered-resume-screening-assistant-with-n8n-langchain-and-angular-0944132a35eb'
     },
     {
-      title: 'Electricity Consumption Dashboard',
-      description: 'Containerized microservice-based application to monitor and analyze electricity consumption patterns.',
-      tags: ['Angular', 'SpringBoot', 'AWS Lambda', 'Docker'],
+      title: 'Financial Report Summarizer',
+      description: 'A tool that turns long financial documents into concise summaries and answers questions about their content.',
+      tags: ['AI', 'Document Summarization', 'Python'],
     },
     {
-      title: 'Financial report RAG Summarizer',
-      description: 'A tool that uses Retrieval-Augmented Generation (RAG) to summarize financial reports, extracting key insights and trends for investors.',
-      tags: ['Python', 'Langchain', 'ChromaDB', 'AWS S3'],
-    },
-    {
-      title: 'Customer Feedback Classifier',
-      description: 'A machine learning model that categorizes and analyzes customer feedback to identify common themes and sentiment.',
-      tags: ['Python', 'Scikit-learn', 'Pandas'],
-      url: 'https://www.linkedin.com/pulse/building-hybrid-customer-feedback-classifier-vs-logistic-karan-bhatia-wrfxc/'
+      title: 'Semantic Product Search',
+      description: 'A search experience that matches what people mean with relevant product descriptions.',
+      tags: ['AI', 'Search', 'Angular'],
     },
   ];
 
