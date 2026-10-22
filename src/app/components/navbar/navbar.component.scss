@@ -99,8 +99,16 @@
       padding: 1rem 1.5rem;
     }
 
+    gap: 1rem;
+
     &__links {
-      display: none;
+      gap: 1.25rem;
+    }
+
+    &__link {
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      padding: 0.5rem 0;
     }
 
     &__status {

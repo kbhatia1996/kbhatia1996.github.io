@@ -36,10 +36,4 @@ export class WorkComponent {
       tags: ['AI', 'Search', 'Angular'],
     },
   ];
-
-  openProjectLink(project: Project): void {
-    if (project.url) {
-      window.open(project.url, '_blank');
-    }
-  }
 }

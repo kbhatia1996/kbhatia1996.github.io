@@ -98,6 +98,28 @@
   }
 }
 
+@media (max-width: 768px) {
+  .contact {
+    padding: 6rem 1.5rem 3rem;
+    min-height: auto;
+
+    &__email {
+      max-width: 100%;
+      font-size: clamp(1rem, 5vw, 1.4rem);
+      margin-bottom: 2rem;
+
+      span {
+        min-width: 0;
+        overflow-wrap: anywhere;
+      }
+
+      svg {
+        flex-shrink: 0;
+      }
+    }
+  }
+}
+
 .footer {
   display: flex;
   justify-content: space-between;

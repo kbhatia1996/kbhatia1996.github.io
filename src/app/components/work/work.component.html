@@ -20,11 +20,19 @@
             <span class="tag" *ngFor="let tag of project.tags">{{ tag }}</span>
           </div>
         </div>
-        <div class="project__arrow" (click)="openProjectLink(project)" [class.clickable]="project.url">
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+        <a *ngIf="project.url; else noLink" class="project__arrow clickable" [href]="project.url"
+           target="_blank" rel="noopener noreferrer" [attr.aria-label]="'Read more about ' + project.title">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
             <path d="M4 10H16M16 10L11 5M16 10L11 15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
           </svg>
-        </div>
+        </a>
+        <ng-template #noLink>
+          <div class="project__arrow" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <path d="M4 10H16M16 10L11 5M16 10L11 15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+        </ng-template>
       </article>
     </div>
   </div>
