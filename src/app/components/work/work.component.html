@@ -5,6 +5,110 @@
       <h2 class="work__heading">Things I've Built</h2>
     </div>
 
+    <article class="feature feature--desktop" aria-labelledby="hirelens-title">
+      <div class="feature__stage" (mouseenter)="pauseShots(true)" (mouseleave)="pauseShots(false)" (focusin)="pauseShots(true)" (focusout)="pauseShots(false)">
+        <div class="browser">
+          <div class="browser__bar" aria-hidden="true">
+            <span></span><span></span><span></span>
+            <em>HireLens · {{ hirelensShots[shot()].tab }}</em>
+          </div>
+          <div class="browser__screen">
+            @for (s of hirelensShots; track s.src; let i = $index) {
+              <img [src]="s.src" [alt]="s.alt" width="1600" height="1000" loading="lazy" decoding="async"
+                   [class.on]="shot() === i" [attr.aria-hidden]="shot() === i ? null : true" />
+            }
+          </div>
+        </div>
+        <div class="shots" role="tablist" aria-label="HireLens screens">
+          @for (s of hirelensShots; track s.src; let i = $index) {
+            <button type="button" role="tab" class="shots__tab" [class.shots__tab--on]="shot() === i"
+                    [attr.aria-selected]="shot() === i" (click)="pickShot(i)">{{ s.tab }}</button>
+          }
+        </div>
+        <span class="feature__hint">Real product screens, fictional demo candidates</span>
+      </div>
+
+      <div class="feature__copy">
+        <p class="feature__eyebrow">Featured · Private product</p>
+        <h3 class="feature__title" id="hirelens-title">Hire<em>Lens</em></h3>
+        <p class="feature__desc">
+          AI resume screening for HR teams. Every resume gets a score out of 100 and a plain-English breakdown of
+          strengths, gaps and suggested interview questions. Bulk upload, a partner API, and a talent pool you can
+          search by describing who you need.
+        </p>
+        <p class="feature__note">
+          <span class="feature__lock" aria-hidden="true">🔒</span>
+          Commercial software, used by startups through paid access. The code is private, so there is no public repo.
+          Happy to walk you through it live.
+        </p>
+        <ul class="feature__tags">
+          <li>Explainable scoring</li>
+          <li>RAG talent pool</li>
+          <li>Partner API</li>
+          <li>Multi-tenant</li>
+          <li>Python · FastAPI</li>
+          <li>Vector search</li>
+        </ul>
+        <div class="feature__actions">
+          <a class="feature__btn feature__btn--primary" href="#contact">Request a demo <span aria-hidden="true">→</span></a>
+          <a class="feature__btn" [href]="hirelensArticle" target="_blank" rel="noopener noreferrer">
+            How it started (article) <span aria-hidden="true">↗</span>
+          </a>
+        </div>
+      </div>
+    </article>
+
+    <article class="feature" aria-labelledby="pigeons-title">
+      <div class="feature__copy">
+        <p class="feature__eyebrow">Featured · Live app</p>
+        <h3 class="feature__title" id="pigeons-title">Proper Productive <em>Pigeons</em></h3>
+        <p class="feature__desc">
+          A habit and productivity app for couples. Set your own goals, pick your own rewards, and level up together.
+          Progress syncs securely through Firebase, with Google sign-in for a one-tap start.
+        </p>
+        <ul class="feature__tags">
+          <li>Custom goals</li>
+          <li>Rewards</li>
+          <li>Firebase</li>
+          <li>Google sign-in</li>
+        </ul>
+        <div class="feature__actions">
+          <a class="feature__btn feature__btn--primary" [href]="pigeons.live" target="_blank" rel="noopener noreferrer">
+            Open the live app <span aria-hidden="true">↗</span>
+          </a>
+          <a class="feature__btn" [href]="pigeons.repo" target="_blank" rel="noopener noreferrer">
+            <svg width="18" height="18" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+              <path d="M8 0C3.58 0 0 3.58 0 8a8 8 0 0 0 5.47 7.59c.4.07.55-.17.55-.38v-1.33c-2.23.48-2.7-1.07-2.7-1.07-.36-.92-.89-1.17-.89-1.17-.73-.5.06-.49.06-.49.8.06 1.23.83 1.23.83.72 1.22 1.88.87 2.33.66.07-.52.28-.87.5-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.6 7.6 0 0 1 4 0c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.28.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48v2.2c0 .21.15.46.55.38A8 8 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/>
+            </svg>
+            View on GitHub
+          </a>
+        </div>
+      </div>
+
+      <div class="feature__stage" aria-hidden="true">
+        <div class="phone">
+          <div class="phone__notch"></div>
+          <div class="phone__screen">
+            <div class="app__brand"><span class="app__mark">P</span><span>Proper Productive Pigeons</span></div>
+            <p class="app__eyebrow">Today, together</p>
+            <p class="app__headline">Level up as a duo.</p>
+
+            <ul class="app__goals">
+              <li class="goal goal--1"><span class="goal__box"></span>Evening walk, no phones</li>
+              <li class="goal goal--2"><span class="goal__box"></span>Cook dinner together</li>
+              <li class="goal goal--3"><span class="goal__box"></span>10 minutes of planning</li>
+            </ul>
+
+            <div class="app__reward">
+              <div class="app__reward-row"><span>Next reward</span><b>Movie night</b></div>
+              <div class="app__bar"><span class="app__bar-fill"></span></div>
+            </div>
+          </div>
+        </div>
+        <span class="feature__hint">Illustrative preview</span>
+      </div>
+    </article>
+
     <div class="work__list">
       <article class="project" *ngFor="let project of projects; let i = index"
                (mouseenter)="activeProject = i"

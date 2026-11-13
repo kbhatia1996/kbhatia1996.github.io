@@ -1,0 +1,280 @@
+<section class="play" id="play" [class.play--focus]="engaged()">
+  <div class="play__inner">
+    <div class="play__header">
+      <p class="section-label">04 — Player One</p>
+      <h2 class="play__heading">Press start. <em>Meet your next hire.</em></h2>
+      <p class="play__sub">
+        Four quick games. Each one shows how Karan works, not just what he lists on a resume. Beat them and your
+        scores go straight into a message to him.
+      </p>
+    </div>
+
+    <ol class="steps" aria-label="Progress">
+      @for (name of ['Start', 'Precision', 'Clarity', 'Speed', 'Resilience', 'Report']; track name; let i = $index) {
+        <li>
+          <button type="button" class="steps__node" [class.steps__node--now]="level() === i"
+                  [class.steps__node--done]="cleared().has(i)" [disabled]="!canVisit(i)"
+                  [attr.aria-current]="level() === i ? 'step' : null" (click)="goTo(i)">
+            <span class="steps__dot">{{ cleared().has(i) ? '✓' : i }}</span>
+            <span class="steps__name">{{ name }}</span>
+          </button>
+        </li>
+      }
+    </ol>
+
+    <div class="stage" #stage>
+      <div class="hud" aria-live="off">
+        <span class="hud__xp"><b>{{ xp() }}</b> XP</span>
+        <button type="button" class="hud__sound" [attr.aria-pressed]="sound()" (click)="toggleSound()">
+          Sound {{ sound() ? 'on' : 'off' }}
+        </button>
+      </div>
+
+      @if (countdown(); as n) {
+        <div class="countdown" aria-live="assertive"><span [attr.data-n]="n">{{ n }}</span></div>
+      }
+
+      @switch (level()) {
+        <!-- INTRO -->
+        @case (0) {
+          <div class="panel panel--intro">
+            <h3 class="panel__title">Karan Bhatia <em>vs. your hardest problems</em></h3>
+            <p class="panel__lead">
+              Senior software engineer. 7+ years across banking, healthcare and insurance. Backend and cloud by trade,
+              applied AI by curiosity. The best way to see how he thinks is to play.
+            </p>
+            <ul class="trait-preview">
+              @for (l of levels; track l.trait; let i = $index) {
+                <li><b>{{ i + 1 }}</b><span>{{ l.trait }}</span><small>{{ l.pitch }}</small></li>
+              }
+            </ul>
+            <div class="panel__actions">
+              <button type="button" class="btn-play btn-play--primary" (click)="begin()">▶ Press start · about 90 seconds</button>
+              <a class="link-btn" [href]="'mailto:' + email">Skip the games, just email me</a>
+            </div>
+          </div>
+        }
+
+        <!-- LEVEL 1: FITTS -->
+        @case (1) {
+          <div class="panel">
+            <header class="level-head">
+              <span class="level-head__tag">Level 1 / 4</span>
+              <h3>Precision</h3>
+              <p>Tap each target as fast as you can. Some are tiny.</p>
+            </header>
+            <div class="arena">
+              @if (fittsPhase() === 'idle') {
+                <p class="hint">Get ready: {{ fittsRounds }} targets, as fast as you can.</p>
+              }
+              @if (fittsPhase() === 'running' && fittsTarget(); as t) {
+                <button type="button" class="dot" aria-label="Tap the target" [style.width.px]="t.px"
+                        [style.height.px]="t.px" [style.left.%]="t.x" [style.top.%]="t.y" (click)="hitFitts()"></button>
+                <span class="arena__count">{{ fittsRound() + 1 }} / {{ fittsRounds }}@if (lastHit(); as ms) { · last {{ ms }} ms }</span>
+              }
+              @if (fittsResult(); as r) {
+                <div class="result" aria-live="polite">
+                  <div class="result__row"><span>Small target</span><b>{{ r.small | number: '1.0-0' }} ms</b></div>
+                  <div class="result__row"><span>Large target</span><b>{{ r.large | number: '1.0-0' }} ms</b></div>
+                  <p class="result__take">
+                    @if (fittsGain() > 0) {
+                      Large targets were <strong>{{ fittsGain() }}% faster</strong>. That is Fitts's Law, and why Karan
+                      sizes every control for the person using it.
+                    } @else {
+                      You beat the physics. Karan still sizes touch targets to at least 44px.
+                    }
+                  </p>
+                  <button type="button" class="link-btn" (click)="replay(1)">Replay</button>
+                </div>
+              }
+            </div>
+          </div>
+        }
+
+        <!-- LEVEL 2: HICK -->
+        @case (2) {
+          <div class="panel">
+            <header class="level-head">
+              <span class="level-head__tag">Level 2 / 4</span>
+              <h3>Clarity</h3>
+              <p>Find the word we ask for. The list will change size.</p>
+            </header>
+            <div class="arena arena--hick">
+              @if (hickPhase() === 'idle') {
+                <p class="hint">Get ready: {{ hickRounds }} rounds. Find the word.</p>
+              }
+              @if (hickPhase() === 'running' && hickTrial(); as trial) {
+                <p class="hick__prompt" aria-live="polite">
+                  Pick <strong>{{ trial.answer }}</strong>
+                  @if (hickMiss()) { <span class="hick__miss">not that one</span> }
+                </p>
+                <div class="hick__options" [class.hick__options--many]="trial.count > 3">
+                  @for (opt of trial.options; track opt) {
+                    <button type="button" class="chip" (click)="pickHick(opt)">{{ opt }}</button>
+                  }
+                </div>
+                <span class="arena__count">{{ hickRound() + 1 }} / {{ hickRounds }}@if (lastHit(); as ms) { · last {{ ms / 1000 | number: '1.1-1' }} s }</span>
+              }
+              @if (hickResult(); as r) {
+                <div class="result" aria-live="polite">
+                  <div class="result__row"><span>3 options</span><b>{{ r.few / 1000 | number: '1.1-1' }} s</b></div>
+                  <div class="result__row"><span>12 options</span><b>{{ r.many / 1000 | number: '1.1-1' }} s</b></div>
+                  <p class="result__take">
+                    @if (hickGain() > 0) {
+                      12 options cost you <strong>{{ hickGain() }}% more time</strong>. That is Hick's Law. Karan
+                      designs and builds by removing noise first.
+                    } @else {
+                      Fast scanner. Most people slow down as options grow, so Karan still groups and prioritises.
+                    }
+                  </p>
+                  <button type="button" class="link-btn" (click)="replay(2)">Replay</button>
+                </div>
+              }
+            </div>
+          </div>
+        }
+
+        <!-- LEVEL 3: DOHERTY -->
+        @case (3) {
+          <div class="panel">
+            <header class="level-head">
+              <span class="level-head__tag">Level 3 / 4</span>
+              <h3>Speed</h3>
+              <p>Press Save on both. Same outcome, different feeling.</p>
+            </header>
+            <div class="arena arena--doherty">
+              <div class="save-row">
+                <div class="save">
+                  <span class="save__label">A · Wait for the server</span>
+                  <button type="button" class="btn-play" [disabled]="slowState() === 'loading'" (click)="saveSlow()">
+                    @switch (slowState()) {
+                      @case ('loading') { <span class="spinner" aria-hidden="true"></span> Saving… }
+                      @case ('done') { ✓ Saved }
+                      @default { Save }
+                    }
+                  </button>
+                </div>
+                <div class="save">
+                  <span class="save__label">B · Optimistic</span>
+                  <button type="button" class="btn-play" (click)="saveFast()">
+                    @if (fastState() === 'done') { ✓ Saved } @else { Save }
+                  </button>
+                </div>
+              </div>
+              <div class="doherty__note" aria-live="polite">
+                @if (cleared().has(3)) {
+                  <p class="result__take">
+                    B felt instant. A made you wait for the same result. Karan confirms first, reconciles quietly and
+                    handles failure gracefully. That is the Doherty threshold.
+                  </p>
+                  <button type="button" class="link-btn" (click)="resetDoherty()">Replay</button>
+                } @else {
+                  <p class="hint">Try both buttons.</p>
+                }
+              </div>
+            </div>
+          </div>
+        }
+
+        <!-- LEVEL 4: RUNNER -->
+        @case (4) {
+          <div class="panel">
+            <header class="level-head">
+              <span class="level-head__tag">Level 4 / 4</span>
+              <h3>Resilience</h3>
+              <p>
+                Dodge {{ goal }} of the things that derail projects. <kbd>Space</kbd> / <kbd>↑</kbd> or tap to jump.
+              </p>
+            </header>
+            <div class="arena arena--runner">
+              <canvas #runner class="runner" tabindex="0" role="img"
+                      aria-label="Endless runner game. Press space or tap to jump over obstacles."
+                      (keydown)="onRunnerKey($event)" (pointerdown)="runnerInput()"></canvas>
+                <div class="runner__bar" [class.runner__bar--hidden]="runPhase() === 'running'">
+                  <button type="button" class="btn-play btn-play--primary" (click)="replay(4)">
+                    {{ runPhase() === 'done' ? '↻ Run again' : '▶ Start run' }}
+                  </button>
+                  @if (runResult(); as r) {
+                    <span class="runner__stats" aria-live="polite">
+                      Score {{ r.score }} · Dodged {{ r.dodged }} · Jumps {{ r.jumps }} · {{ r.seconds | number: '1.1-1' }}s
+                    </span>
+                  }
+                </div>
+              <div class="runner__meta">
+                <span>Best {{ runBest() }}</span><span>Attempts {{ runAttempts() }}</span>
+              </div>
+            </div>
+          </div>
+        }
+
+        <!-- REPORT -->
+        @case (5) {
+          <div class="panel panel--report">
+            <div class="confetti" aria-hidden="true">
+              @for (c of confetti; track $index) {
+                <span [style.--x.px]="c.x" [style.--y.px]="c.y" [style.--r.deg]="c.r" [style.animation-delay.ms]="c.d"
+                      [attr.data-hue]="c.hue"></span>
+              }
+            </div>
+            <p class="section-label">Scouting report</p>
+            <h3 class="panel__title">Player Karan <em>is a match.</em></h3>
+            <p class="panel__lead">
+              {{ played() }} of 4 levels cleared · {{ xp() }} XP. Here is what each game says about the person you would be working with.
+            </p>
+
+            <div class="report">
+              @for (l of levels; track l.trait; let i = $index) {
+                <div class="report__card" [class.report__card--on]="cleared().has(i + 1)">
+                  <span class="report__trait">{{ l.trait }}</span>
+                  <p>{{ l.pitch }}</p>
+                  <small>
+                    @switch (i) {
+                      @case (0) { @if (fittsResult(); as r) { Your tap time: {{ r.large | number: '1.0-0' }} ms } @else { Not played }}
+                      @case (1) { @if (hickResult(); as r) { Your 3-choice time: {{ r.few / 1000 | number: '1.1-1' }} s } @else { Not played }}
+                      @case (2) { @if (cleared().has(3)) { Instant beats spinner } @else { Not played }}
+                      @case (3) { @if (runResult(); as r) { Score {{ r.score }} · Best {{ runBest() }} } @else { Not played }}
+                    }
+                  </small>
+                </div>
+              }
+            </div>
+
+            <ul class="facts" aria-label="Background">
+              @for (f of facts; track f) { <li>{{ f }}</li> }
+            </ul>
+
+            <p class="panel__lead panel__lead--tight">Ready when you are. Pick a topic (just three, Hick would approve).</p>
+            <div class="topics" role="radiogroup" aria-label="Topic">
+              @for (t of topics; track t) {
+                <button type="button" class="chip" role="radio" [attr.aria-checked]="topic() === t"
+                        [class.chip--on]="topic() === t" (click)="topic.set(t)">{{ t }}</button>
+              }
+            </div>
+            <div class="panel__actions">
+              <a class="btn-play btn-play--primary" [href]="mailto()">Write to Karan →</a>
+              <button type="button" class="link-btn" (click)="copyEmail()">{{ copied() ? 'Copied ✓' : 'or copy my email' }}</button>
+            </div>
+          </div>
+        }
+      }
+
+      <!-- Level clear banner with auto-advance -->
+      @if (autoAdvance()) {
+        <div class="clear" role="status">
+          <span><b>Level clear.</b> {{ levels[level() - 1].trait }} unlocked.</span>
+          <button type="button" class="btn-play btn-play--primary" (click)="next()">
+            {{ level() === 4 ? 'See my report' : 'Next level' }} →
+            <span class="clear__timer" aria-hidden="true"></span>
+          </button>
+        </div>
+      }
+
+      @if (level() > 0 && level() < report) {
+        <div class="stage__foot">
+          <button type="button" class="link-btn" (click)="skip()">Skip level</button>
+          <a class="link-btn" [href]="'mailto:' + email">Just email me</a>
+        </div>
+      }
+    </div>
+  </div>
+</section>

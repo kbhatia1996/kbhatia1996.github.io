@@ -1,10 +1,9 @@
 <section class="hero" #heroSection>
-  <!-- Scroll progress indicator -->
-  <div class="scroll-progress" [style.width.%]="scrollProgress * 100"></div>
+  <div class="scroll-progress" #progressBar></div>
 
   <div class="hero__inner">
     <!-- Left: Text content -->
-    <div class="hero__content" [class.visible]="contentVisible">
+    <div class="hero__content" [class.visible]="contentVisible()">
       <p class="section-label">Portfolio</p>
 
       <h1 class="hero__title">
@@ -40,26 +39,18 @@
       </div>
     </div>
 
-    <!-- Right: The silhouette-to-image reveal -->
-    <div class="hero__image-container" #imageContainer>
-      <div class="hero__image-reveal">
-
-        <!--
-          LAYER 1 — Silhouette: same photo, forced to solid black via CSS.
-          Always sits underneath. Edges = photo edges. Perfect match guaranteed.
-        -->
+    <!-- Right: silhouette-to-colour reveal, driven by CSS variables set on scroll -->
+    <div class="hero__image-container">
+      <div class="hero__image-reveal" #tilt>
         <div class="layer layer--silhouette">
-          <img src="assets/images/picLinkedin.PNG" alt="" aria-hidden="true" />
+          <img src="assets/images/portrait.jpg" alt="" aria-hidden="true" width="900" height="1350" decoding="async" />
         </div>
 
-        <!--
-          LAYER 2 — Full colour photo, revealed from top as user scrolls.
-          clip-path wipes downward; filter desaturates → full colour simultaneously.
-        -->
-        <div class="layer layer--colour" [style.clip-path]="clipPath" [style.filter]="imageFilter">
-          <img src="assets/images/picLinkedin.PNG" alt="Karan" />
+        <div class="layer layer--colour">
+          <img src="assets/images/portrait.jpg" alt="Karan Bhatia" width="900" height="1350" decoding="async" fetchpriority="high" />
         </div>
 
+        <div class="scan" aria-hidden="true"></div>
       </div>
 
       <!-- Decorative elements -->
@@ -71,7 +62,7 @@
   </div>
 
   <!-- Scroll hint -->
-  <div class="scroll-hint" [class.hidden]="scrollProgress > 0.05">
+  <div class="scroll-hint" [class.hidden]="hintHidden()">
     <div class="scroll-hint__line"></div>
     <span>Scroll</span>
   </div>

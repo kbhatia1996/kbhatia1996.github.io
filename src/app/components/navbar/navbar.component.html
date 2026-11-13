@@ -1,12 +1,13 @@
-<nav class="navbar" [class.scrolled]="isScrolled">
+<nav class="navbar" [class.scrolled]="isScrolled()">
   <div class="navbar__logo">
     <span class="navbar__logo-text">KB<span class="dot">.</span></span>
   </div>
 
   <div class="navbar__links">
-    <a href="#about" class="navbar__link" (mouseenter)="onLinkHover(true)" (mouseleave)="onLinkHover(false)">About</a>
-    <a href="#work" class="navbar__link" (mouseenter)="onLinkHover(true)" (mouseleave)="onLinkHover(false)">Work</a>
-    <a href="#contact" class="navbar__link" (mouseenter)="onLinkHover(true)" (mouseleave)="onLinkHover(false)">Contact</a>
+    <a href="#about" class="navbar__link">About</a>
+    <a href="#work" class="navbar__link">Work</a>
+    <a href="#play" class="navbar__link">Play</a>
+    <a href="#contact" class="navbar__link">Contact</a>
   </div>
 
   <div class="navbar__status">

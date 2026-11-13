@@ -39,7 +39,7 @@
   &__number {
     span {
       font-family: var(--font-mono);
-      font-size: 0.7rem;
+      font-size: 0.9rem;
       color: var(--color-text-muted);
       letter-spacing: 0.1em;
     }
@@ -54,21 +54,21 @@
   }
 
   &__issuer {
-    font-size: 0.875rem;
+    font-size: 1rem;
     color: var(--color-accent);
     font-weight: 600;
     margin-bottom: 0.2rem;
   }
 
   &__date {
-    font-size: 0.75rem;
+    font-size: 0.9rem;
     color: var(--color-text-muted);
     font-family: var(--font-mono);
     margin-bottom: 0.4rem;
   }
 
   &__description {
-    font-size: 0.875rem;
+    font-size: 1rem;
     color: var(--color-text-muted);
     line-height: 1.6;
     max-width: 500px;
@@ -76,7 +76,7 @@
   }
 
   &__credential {
-    font-size: 0.75rem;
+    font-size: 0.9rem;
     color: var(--color-text-muted);
     font-family: var(--font-mono);
     letter-spacing: 0.05em;

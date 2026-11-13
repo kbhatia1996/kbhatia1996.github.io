@@ -1,29 +1,25 @@
-import { Component, HostListener, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, OnDestroy, OnInit, signal } from '@angular/core';
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [CommonModule],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss'
 })
-export class NavbarComponent implements OnInit {
-  isScrolled = false;
+export class NavbarComponent implements OnInit, OnDestroy {
+  readonly isScrolled = signal(false);
 
-  ngOnInit(): void {}
+  private readonly onScroll = () => {
+    const scrolled = window.scrollY > 50;
+    if (scrolled !== this.isScrolled()) this.isScrolled.set(scrolled);
+  };
 
-  @HostListener('window:scroll')
-  onScroll(): void {
-    this.isScrolled = window.scrollY > 50;
+  ngOnInit(): void {
+    window.addEventListener('scroll', this.onScroll, { passive: true });
+    this.onScroll();
   }
 
-  onLinkHover(isHovering: boolean): void {
-    const cursor = document.querySelector('.cursor');
-    if (isHovering) {
-      cursor?.classList.add('expanded');
-    } else {
-      cursor?.classList.remove('expanded');
-    }
+  ngOnDestroy(): void {
+    window.removeEventListener('scroll', this.onScroll);
   }
 }
